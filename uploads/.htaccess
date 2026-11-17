@@ -1,0 +1,18 @@
+# Bloqueia execução de PHP e scripts em uploads/
+<FilesMatch "\.(php|php3|php4|php5|phtml|pl|py|jsp|asp|sh|cgi)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Negar acesso a arquivos ocultos
+<FilesMatch "^\.">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Forçar download de PDFs (não executar)
+<FilesMatch "\.pdf$">
+    Header set Content-Disposition "attachment"
+</FilesMatch>
+
+Options -ExecCGI -Indexes

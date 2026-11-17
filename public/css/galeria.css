@@ -1,0 +1,42 @@
+@import url('icon-system.css');
+/* ================================================================
+   galeria.css
+   Extraído de views/galeria/index.php
+================================================================ */
+.galeria-aviso {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 64px 24px;
+    background: #FFFFFF; border: 1px solid rgba(199,157,115,.22);
+    border-radius: 12px; margin: 24px 0; gap: 16px;
+}
+.galeria-aviso-icon {
+    width: 72px; height: 72px;
+    background: rgba(199,157,115,.12); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--ds-bronze-strong);
+}
+.galeria-aviso-icon [data-lucide] { width: 36px; height: 36px; }
+.galeria-aviso h2 { font-size: 1.3rem; font-weight: 600; color: var(--ds-text); margin: 0; }
+.galeria-aviso p  { color: var(--ds-text-muted); font-size: 0.9rem; max-width: 420px; margin: 0; line-height: 1.6; }
+
+/* .btn-voltar-dashboard — padronizado em icon-system.css */
+
+/* ================================================================
+   RESPONSIVIDADE — galeria.css
+================================================================ */
+
+@media (max-width: 768px) {
+  .galeria-aviso { padding: 40px 20px; border-radius: 12px; }
+  .galeria-aviso svg { width: 36px; height: 36px; }
+  .galeria-aviso h2 { font-size: 1.1rem; }
+  .galeria-aviso p { font-size: 13px; }
+  .btn-voltar-dashboard { font-size: 13px; padding: 9px 16px; }
+}
+
+@media (max-width: 480px) {
+  .galeria-aviso { padding: 28px 16px; }
+  .galeria-aviso svg { width: 30px; height: 30px; }
+  .galeria-aviso h2 { font-size: 1rem; }
+  .galeria-aviso p { font-size: 12.5px; }
+  .btn-voltar-dashboard { width: 100%; justify-content: center; }
+}

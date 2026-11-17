@@ -1,0 +1,110 @@
+@import url('design-system.css');
+@import url('icon-system.css');
+
+/* ================================================================
+   dashboard.css — Afro Essência v2.0
+   Dashboard geral · Estética editorial light/cream
+   CLASSES IDÊNTICAS — visual atualizado
+================================================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Montserrat', 'Inter', sans-serif;
+  color: var(--ds-text);
+  background: var(--ds-bg);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+.dashboard-wrapper {
+  max-width: 1180px;
+  margin: 84px auto 40px;
+  padding: 32px;
+  border-radius: var(--ds-radius);
+  background: #FFFFFF;
+  border: 1px solid var(--ds-border-neutral);
+  box-shadow: var(--ds-shadow-md);
+}
+
+.dashboard-header, .page-head {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 18px; margin-bottom: 28px;
+}
+.dashboard-header h1, .page-head h1 {
+  margin: 0;
+  font-size: clamp(1.9rem, 2.4vw, 2.8rem);
+  font-family: 'Playfair Display', serif;
+  font-weight: 700; color: var(--ds-text);
+  letter-spacing: .02em;
+}
+.dashboard-header p { margin: 6px 0 0; max-width: 740px; color: var(--ds-text-soft); font-size: .97rem; line-height: 1.8; }
+
+.alert-success {
+  margin-top: 18px; padding: 14px 18px; border-radius: var(--ds-radius-sm);
+  background: var(--ds-success-bg); border: 1px solid var(--ds-success-bdr);
+  color: var(--ds-success); font-size: .95rem;
+}
+
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 20px; margin-top: 24px; }
+.stats-grid--spaced { margin-top: 18px; }
+
+.card {
+  background: var(--ds-surface);
+  border: 1px solid var(--ds-border-neutral);
+  border-radius: var(--ds-radius);
+  padding: 26px;
+  box-shadow: var(--ds-shadow-sm);
+  transition: transform .25s, box-shadow .25s, border-color .25s;
+}
+.card:hover { transform: translateY(-3px); border-color: var(--ds-bronze-border); box-shadow: var(--ds-shadow-hover); }
+.card strong { display: block; margin-bottom: 12px; font-size: .95rem; color: var(--ds-text-muted); font-weight: 600; }
+.card span { font-size: 2.65rem; font-weight: 700; color: var(--ds-bronze-strong); letter-spacing: -.03em; }
+
+.actions { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 14px; }
+
+.btn, .btn-secondary {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 13px 22px; border-radius: var(--ds-radius-full);
+  text-decoration: none; font-weight: 700;
+  font-family: 'Montserrat', 'Inter', sans-serif;
+  transition: transform .2s, background .2s, box-shadow .2s;
+}
+.btn { background: linear-gradient(135deg, #6A3550 0%, #A56758 100%); color: #FFFFFF; box-shadow: 0 10px 24px rgba(106,53,80,.28); }
+.btn:hover { transform: translateY(-2px); filter: brightness(1.08); box-shadow: 0 16px 32px rgba(106,53,80,.40); }
+.btn-secondary {
+  background: var(--ds-surface); color: var(--ds-text-soft);
+  border: 1px solid var(--ds-border-neutral);
+}
+.btn-secondary:hover { background: var(--ds-surface-alt); color: var(--ds-text); }
+
+.button-row { display: flex; gap: 12px; flex-wrap: wrap; }
+
+.table-section, .table-page { margin-top: 32px; }
+.table-section h2 { margin-bottom: 18px; font-size: 1.36rem; font-weight: 700; color: var(--ds-text); }
+
+.table-wrapper {
+  overflow-x: auto; border-radius: var(--ds-radius-sm);
+  background: #FFFFFF; border: 1px solid var(--ds-border-neutral); box-shadow: var(--ds-shadow-sm);
+}
+table { width: 100%; border-collapse: collapse; color: var(--ds-text); }
+th, td { padding: 16px 18px; border-bottom: 1px solid rgba(69,53,44,.07); }
+th { background: var(--ds-surface); text-align: left; font-weight: 700; font-size: .875rem; color: var(--ds-text-muted); text-transform: uppercase; letter-spacing: .04em; }
+tbody tr:hover { background: rgba(106,53,80,.04); }
+
+.badge { display: inline-flex; padding: 5px 12px; border-radius: var(--ds-radius-full); font-size: .875rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; border: 1px solid transparent; }
+.badge-pendente     { background: rgba(139,94,0,.10);   color: var(--ds-warning); border-color: rgba(139,94,0,.22); }
+.badge-concluido    { background: var(--ds-success-bg); color: var(--ds-success); border-color: var(--ds-success-bdr); }
+.badge-cancelado    { background: var(--ds-error-bg);   color: var(--ds-error);   border-color: var(--ds-error-bdr); }
+
+.empty-state { color: var(--ds-text-muted); margin-top: 18px; font-size: 1rem; }
+
+@media (max-width: 1040px) { .dashboard-wrapper { margin: 64px 18px 32px; padding: 26px; } }
+@media (max-width: 840px) {
+  .dashboard-header, .page-head { flex-direction: column; align-items: flex-start; }
+  .actions, .button-row { width: 100%; }
+}
+@media (max-width: 640px) { .dashboard-wrapper { margin: 56px 16px 24px; padding: 22px; } .card { padding: 20px; } .btn, .btn-secondary { width: 100%; } }
+@media (max-width: 480px) { .dashboard-wrapper { margin: 48px 10px 20px; padding: 18px 14px; } .btn, .btn-secondary { font-size: 14px; padding: 10px 14px; } }
+@media (max-width: 375px) { .dashboard-wrapper { margin: 40px 8px 16px; padding: 16px 12px; } }

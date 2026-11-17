@@ -1,0 +1,23 @@
+User-agent: *
+Disallow: /app/
+Disallow: /config/
+Disallow: /vendor/
+Disallow: /logs/
+Disallow: /uploads/
+Disallow: /auth/
+Disallow: /dashboard/
+Disallow: /agendamento/
+Disallow: /pagamento/
+Disallow: /anamnese/
+Disallow: /avaliacao/
+Disallow: /notificacao/
+
+Allow: /
+Allow: /home
+Allow: /servico/
+Allow: /trabalheconosco
+Allow: /public/css/
+Allow: /public/js/
+Allow: /public/imagens/
+
+Sitemap: https://seudominio.com.br/sitemap.xml

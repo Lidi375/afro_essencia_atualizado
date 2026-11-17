@@ -1,0 +1,106 @@
+Options -Indexes
+Options -MultiViews
+
+# ── Roteamento ────────────────────────────────────────────────
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Bloquear download direto de arquivos sensíveis da raiz
+    RewriteRule \.(sql|log|md|env|sh|bak|ini|json|lock)$ - [F,L]
+
+    # Ajuste esta linha conforme o caminho do seu host:
+    #   Subpasta XAMPP:  /afro_essencia/
+    #   Raiz de domínio: /
+    RewriteBase /afro_essencia/
+
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
+</IfModule>
+
+# ── Bloquear acesso a pastas internas ────────────────────────
+<IfModule mod_rewrite.c>
+    RewriteRule ^app/          - [F,L]
+    RewriteRule ^config/       - [F,L]
+    RewriteRule ^vendor/       - [F,L]
+    RewriteRule ^tests/        - [F,L]
+</IfModule>
+
+# ── Bloquear arquivos sensíveis ───────────────────────────────
+<FilesMatch "\.(sql|log|env|gitignore|lock|json|md|ini|sh|bak|swp)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order deny,allow
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# ── Bloquear execução de PHP em uploads ───────────────────────
+<IfModule mod_rewrite.c>
+    RewriteRule ^uploads/.*\.php$ - [F,L]
+</IfModule>
+
+# ── Headers de segurança ──────────────────────────────────────
+<IfModule mod_headers.c>
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+    # Ativar HSTS apenas em produção HTTPS — descomente quando tiver SSL:
+    # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+</IfModule>
+
+# ── Cache de assets estáticos ─────────────────────────────────
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/png         "access plus 1 month"
+    ExpiresByType image/jpeg        "access plus 1 month"
+    ExpiresByType image/webp        "access plus 1 month"
+    ExpiresByType image/svg+xml     "access plus 1 month"
+    ExpiresByType image/x-icon      "access plus 1 year"
+    ExpiresByType text/css          "access plus 1 week"
+    ExpiresByType text/javascript   "access plus 1 week"
+    ExpiresByType application/javascript "access plus 1 week"
+</IfModule>
+
+# ── Compressão Gzip (mod_deflate) ────────────────────────────
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml
+    AddOutputFilterByType DEFLATE text/css text/javascript
+    AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+    AddOutputFilterByType DEFLATE application/json application/xml
+    AddOutputFilterByType DEFLATE image/svg+xml
+    # Não comprimir já comprimidos
+    SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png|webp|gz|zip)$ no-gzip
+</IfModule>
+
+# ── Cache-busting: reescreve /css/arquivo.v123.css → /css/arquivo.css ──
+<IfModule mod_rewrite.c>
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.+)\.v[0-9]+\.(css|js)$ $1.$2 [L]
+</IfModule>
+
+# ── Forçar HTTPS (descomente após ativar SSL no servidor) ────
+# <IfModule mod_rewrite.c>
+#     RewriteCond %{HTTPS} off
+#     RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# </IfModule>
+
+# ── HSTS (descomente após confirmar HTTPS funcionando) ───────
+# <IfModule mod_headers.c>
+#     Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+# </IfModule>
+
+# ── Bloquear acesso direto a arquivos sensíveis ───────────────
+<FilesMatch "\.(sql|log|env|bak|sh|json|lock|md)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order deny,allow
+        Deny from all
+    </IfModule>
+</FilesMatch>

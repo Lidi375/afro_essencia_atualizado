@@ -1,0 +1,31 @@
+# robots.txt — AFRO ESSÊNCIA
+# Bloqueia indexação de painéis internos e rotas privadas
+
+User-agent: *
+
+# Painéis e autenticação — não indexar
+Disallow: /afro_essencia/dashboard
+Disallow: /afro_essencia/agendamento
+Disallow: /afro_essencia/anamnese
+Disallow: /afro_essencia/avaliacao
+Disallow: /afro_essencia/pagamento
+Disallow: /afro_essencia/notificacao
+Disallow: /afro_essencia/financeiro
+Disallow: /afro_essencia/auth/
+Disallow: /afro_essencia/api/
+
+# Assets e arquivos internos
+Disallow: /afro_essencia/vendor/
+Disallow: /afro_essencia/config/
+Disallow: /afro_essencia/logs/
+Disallow: /afro_essencia/uploads/
+
+# Permitir indexação das páginas públicas
+Allow: /afro_essencia/home
+Allow: /afro_essencia/servico/
+Allow: /afro_essencia/profissional/
+Allow: /afro_essencia/trabalheconosco
+Allow: /afro_essencia/public/
+
+# Sitemap
+Sitemap: https://seudominio.com.br/afro_essencia/sitemap.xml

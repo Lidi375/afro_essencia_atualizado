@@ -1,0 +1,447 @@
+/* ================================================================
+   icon-system.css — AFRO ESSÊNCIA
+   Sistema unificado de ícones, hovers de navegação e icon-boxes.
+   Paleta derivada do dashboard cliente (v3.2).
+   Importado por: dashboard-profissional.css, dashboard-admin.css,
+   e qualquer view que use Lucide ou Font Awesome.
+   NÃO alterar regras de negócio, rotas ou banco de dados.
+================================================================ */
+
+/* ──────────────────────────────────────────────────────────────
+   REDE DE SEGURANÇA RESPONSIVA — mídia nunca estoura o container
+   Regras de baixa especificidade: qualquer classe/componente mais
+   específico continua tendo prioridade (nada é sobrescrito).
+   Não afeta <canvas> (Chart.js controla o próprio tamanho).
+────────────────────────────────────────────────────────────────*/
+img, video, embed, object, iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Evita rolagem horizontal acidental em telas pequenas */
+html, body { max-width: 100%; overflow-x: hidden; }
+
+/* ──────────────────────────────────────────────────────────────
+   TOKENS LOCAIS — paleta afro cromática
+   Mesmas cores dos 6 ícones do dashboard cliente
+────────────────────────────────────────────────────────────────*/
+:root {
+  --ic-grad-1: linear-gradient(135deg, #6A3550 0%, #A56758 55%, #D9B38A 100%);
+  --ic-grad-2: linear-gradient(135deg, #7A2E49 0%, #C06A67 55%, #E7B58D 100%);
+  --ic-grad-3: linear-gradient(135deg, #90435B 0%, #D0867D 55%, #F0C2A3 100%);
+  --ic-grad-4: linear-gradient(135deg, #50645B 0%, #81988D 55%, #BECFC3 100%);
+  --ic-grad-5: linear-gradient(135deg, #A97737 0%, #D7AB70 55%, #F3DBB1 100%);
+
+  /* Cor base para hover/active de nav */
+  --ic-nav-hover-bg:   linear-gradient(90deg, rgba(106,53,80,.18) 0%, rgba(165,103,88,.13) 60%, rgba(217,179,138,.06) 100%);
+  --ic-nav-active-bg:  linear-gradient(90deg, rgba(106,53,80,.28) 0%, rgba(165,103,88,.20) 60%, rgba(217,179,138,.10) 100%);
+  --ic-nav-active-clr: #6A3550;
+  --ic-nav-border:     #A56758;
+
+  /* Gloss interno dos icon-boxes */
+  --ic-gloss: linear-gradient(135deg, rgba(255,255,255,.32), transparent 45%);
+}
+
+/* ──────────────────────────────────────────────────────────────
+   ICON-BOX — caixa quadrada com degradê e gloss
+   Uso: <span class="ic-box ic-box--1"> <i class="fa-regular ..."> </span>
+────────────────────────────────────────────────────────────────*/
+.ic-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  transition: transform .30s ease, box-shadow .30s ease;
+  box-shadow: 0 8px 22px rgba(0,0,0,.09);
+}
+
+/* Gloss interno */
+.ic-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--ic-gloss);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.ic-box i,
+.ic-box svg {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  stroke-width: 1.8;
+}
+
+/* Variantes de cor */
+.ic-box--1 { background: var(--ic-grad-1); }
+.ic-box--2 { background: var(--ic-grad-2); }
+.ic-box--3 { background: var(--ic-grad-3); }
+.ic-box--4 { background: var(--ic-grad-4); }
+.ic-box--5 { background: var(--ic-grad-5); }
+
+/* Hover lift */
+.ic-box:hover,
+a:hover > .ic-box,
+button:hover > .ic-box {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 14px 32px rgba(0,0,0,.13);
+}
+
+/* Tamanhos */
+.ic-box--sm { width: 34px; height: 34px; border-radius: 9px; }
+.ic-box--sm i, .ic-box--sm svg { font-size: 15px; width: 15px; height: 15px; }
+
+.ic-box--lg { width: 62px; height: 62px; border-radius: 18px; }
+.ic-box--lg i, .ic-box--lg svg { font-size: 26px; width: 26px; height: 26px; }
+
+/* ──────────────────────────────────────────────────────────────
+   SIDEBAR NAV-ITEM — hover e active unificados
+   Aplica-se em .prof-nav-item (profissional/cliente)
+   e .nav-item (admin)
+────────────────────────────────────────────────────────────────*/
+.prof-nav-item:hover,
+.nav-item:hover {
+  background: var(--ic-nav-hover-bg) !important;
+  color: var(--ic-nav-active-clr) !important;
+  border-left: 3px solid var(--ic-nav-border) !important;
+  transform: none !important;
+}
+
+.prof-nav-item.active,
+.nav-item.active {
+  background: var(--ic-nav-active-bg) !important;
+  color: var(--ic-nav-active-clr) !important;
+  border-left: 3px solid var(--ic-nav-border) !important;
+  font-weight: 700;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   METRIC-ICON (admin dashboard) — harmonizado com a paleta
+────────────────────────────────────────────────────────────────*/
+.metric-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px;
+  position: relative;
+  overflow: hidden;
+}
+.metric-icon::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--ic-gloss);
+  pointer-events: none;
+  z-index: 1;
+}
+.metric-icon svg,
+.metric-icon i {
+  position: relative;
+  z-index: 2;
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+}
+
+/* icon-gold → variante 5 (âmbar/dourado) */
+.metric-icon.icon-gold  { background: var(--ic-grad-5); color: #fff; }
+/* icon-terra → variante 2 (vinho/rose) */
+.metric-icon.icon-terra { background: var(--ic-grad-2); color: #fff; }
+/* icon-green → mantém verde semântico mas com gloss */
+.metric-icon.icon-green { background: linear-gradient(135deg, #2D6A4F 0%, #52A882 55%, #8BC9AA 100%); color: #fff; }
+/* icon-warn → vermelho semântico com gloss */
+.metric-icon.icon-warn  { background: linear-gradient(135deg, #9B2335 0%, #C0566B 55%, #E0A0A8 100%); color: #fff; }
+
+/* ──────────────────────────────────────────────────────────────
+   BOTÕES DO PROJETO — harmonização de hover com a paleta
+────────────────────────────────────────────────────────────────*/
+
+/* Botão primário de submit (agendamento, anamnese, auth) */
+.btn-submit:hover,
+.agend-empty-cta:hover {
+  filter: brightness(1.08) !important;
+  box-shadow: 0 14px 28px rgba(106,53,80,.42) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Botão de avaliar */
+.btn-avaliar:hover {
+  background: linear-gradient(135deg, #A97737, #D7AB70) !important;
+  border-color: transparent !important;
+  box-shadow: 0 8px 22px rgba(169,119,55,.30) !important;
+}
+
+/* Botão de reagendar */
+.btn-reagendar:hover {
+  background: rgba(165,103,88,.14) !important;
+  border-color: #A56758 !important;
+  color: #6A3550 !important;
+}
+
+/* Atalhos do admin */
+.atalho-card:hover {
+  background: rgba(106,53,80,.07) !important;
+  border-color: rgba(165,103,88,.30) !important;
+  color: #6A3550 !important;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   SIDEBAR AVATAR — harmonizado
+────────────────────────────────────────────────────────────────*/
+.prof-sidebar-avatar,
+.sidebar-avatar {
+  background: var(--ic-grad-1) !important;
+  color: #fff !important;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   FOCUS RING — harmonizado com a paleta afro
+────────────────────────────────────────────────────────────────*/
+:focus-visible {
+  outline: 2px solid #A56758 !important;
+  outline-offset: 2px;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   BADGE UNIFICADO — status de agendamento
+   Mantém semântica de cor (verde=ok, vermelho=cancelado, etc.)
+   mas adiciona o mesmo border-radius e tamanho tipográfico
+────────────────────────────────────────────────────────────────*/
+.badge-status,
+.badge,
+.ret-badge,
+.ds-badge {
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+
+/* ================================================================
+   BOTÕES VOLTAR — padronização unificada v3.7
+   Aplica-se a todas as classes de "voltar" do projeto:
+   .page-back · .link-voltar · .agend-back · .btn-voltar-dashboard
+   .btn-outline (admin subpages) · .tc-nav-back · .pdf-btn-back
+================================================================ */
+
+.page-back,
+.link-voltar,
+.agend-back,
+.btn-voltar-dashboard,
+.btn-outline,
+.tc-nav-back {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 7px !important;
+  padding: 9px 18px 9px 14px !important;
+  border-radius: 999px !important;
+  background: linear-gradient(135deg, rgba(106,53,80,.13) 0%, rgba(165,103,88,.09) 100%) !important;
+  border: 1.5px solid rgba(165,103,88,.45) !important;
+  color: #6A3550 !important;
+  text-decoration: none !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  letter-spacing: .02em !important;
+  cursor: pointer !important;
+  box-shadow: 0 2px 8px rgba(106,53,80,.08) !important;
+  transition: background .20s ease, border-color .20s ease,
+              transform .20s ease, box-shadow .20s ease !important;
+  white-space: nowrap !important;
+}
+
+.page-back:hover,
+.link-voltar:hover,
+.agend-back:hover,
+.btn-voltar-dashboard:hover,
+.btn-outline:hover,
+.tc-nav-back:hover {
+  background: linear-gradient(135deg, rgba(106,53,80,.22) 0%, rgba(165,103,88,.16) 100%) !important;
+  border-color: #A56758 !important;
+  color: #6A3550 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 18px rgba(106,53,80,.18) !important;
+}
+
+/* Ícone SVG / Lucide dentro dos botões voltar */
+.page-back svg,
+.page-back i,
+.link-voltar svg,
+.link-voltar i,
+.agend-back svg,
+.agend-back i,
+.btn-voltar-dashboard svg,
+.btn-voltar-dashboard i,
+.btn-outline svg,
+.btn-outline i,
+.tc-nav-back svg,
+.tc-nav-back i {
+  width: 15px !important;
+  height: 15px !important;
+  font-size: 15px !important;
+  flex-shrink: 0 !important;
+  color: inherit !important;
+}
+
+/* Botão voltar do PDF (já é fixed/posicionado, só harmoniza cor) */
+.pdf-btn-back {
+  background: #fff !important;
+  border: 1.5px solid #A56758 !important;
+  color: #6A3550 !important;
+  border-radius: 8px !important;
+}
+.pdf-btn-back:hover {
+  background: rgba(106,53,80,.06) !important;
+  border-color: #6A3550 !important;
+}
+
+/* Botão primário de notificação (← Voltar ao painel) */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 22px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #6A3550 0%, #A56758 100%);
+  color: #fff !important;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(106,53,80,.28);
+  transition: transform .20s ease, box-shadow .20s ease, filter .20s ease;
+  white-space: nowrap;
+}
+.btn-primary:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 14px 28px rgba(106,53,80,.42) !important;
+  filter: brightness(1.08) !important;
+}
+
+/* Margens preservadas por contexto */
+.page-back  { margin: 20px 0 4px !important; }
+.link-voltar { margin: 20px 0 16px !important; }
+.agend-back  { margin-bottom: 18px !important; }
+
+/* Responsivo: empilha em telas muito pequenas */
+@media (max-width: 400px) {
+  .page-back,
+  .link-voltar,
+  .agend-back,
+  .btn-voltar-dashboard,
+  .btn-outline { font-size: 12px !important; padding: 8px 14px 8px 11px !important; }
+}
+
+
+/* ================================================================
+   SELECT — padronização unificada v4.6
+   Fundo: degradê harmônico com hover da sidebar
+   Aplica-se a: .tc-select · .agend-select · .field-select
+                .ds-select · .filter-bar select
+                .status-select-row select · select (global)
+================================================================ */
+
+/* ── Fundo degradê harmônico com a sidebar ─────────────────── */
+.tc-select,
+.agend-select:not(.cs-trigger),
+.field-select,
+.ds-select,
+.filter-bar select,
+.status-select-row select,
+select {
+  background-color: transparent !important;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236A3550' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"),
+    linear-gradient(135deg,
+      rgba(106,53,80,.10) 0%,
+      rgba(165,103,88,.07) 60%,
+      rgba(217,179,138,.04) 100%
+    ) !important;
+  background-repeat: no-repeat, no-repeat !important;
+  background-position: right 12px center, 0 0 !important;
+  background-size: 12px 12px, 100% 100% !important;
+  border: 1.5px solid rgba(165,103,88,.35) !important;
+  color: #45352C !important;
+  transition: border-color .2s ease, box-shadow .2s ease,
+              background .2s ease !important;
+}
+
+/* Hover: aprofunda o degradê */
+.tc-select:hover,
+.agend-select:hover:not(.cs-trigger),
+.field-select:hover:not(:focus),
+.ds-select:hover,
+.filter-bar select:hover,
+.status-select-row select:hover,
+select:hover {
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236A3550' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"),
+    linear-gradient(135deg,
+      rgba(106,53,80,.18) 0%,
+      rgba(165,103,88,.13) 60%,
+      rgba(217,179,138,.07) 100%
+    ) !important;
+  border-color: rgba(165,103,88,.55) !important;
+}
+
+/* Focus: borda vinho com anel suave */
+.tc-select:focus,
+.agend-select:focus:not(.cs-trigger),
+.field-select:focus,
+.ds-select:focus,
+.filter-bar select:focus,
+.status-select-row select:focus,
+select:focus {
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236A3550' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"),
+    linear-gradient(135deg,
+      rgba(106,53,80,.22) 0%,
+      rgba(165,103,88,.16) 60%,
+      rgba(217,179,138,.09) 100%
+    ) !important;
+  border-color: #A56758 !important;
+  box-shadow: 0 0 0 3px rgba(106,53,80,.14) !important;
+  outline: none !important;
+}
+
+/* Opções: fundo branco para legibilidade */
+.tc-select option,
+.agend-select option,
+.field-select option,
+.ds-select option,
+.filter-bar select option,
+.status-select-row select option,
+select option {
+  background: #fff !important;
+  color: #45352C !important;
+}
+
+/* Estado de erro: mantém borda vermelha */
+.tc-select.error,
+.agend-select.error,
+.field-select.error,
+.ds-select.error,
+select.error {
+  border-color: var(--ds-error-bdr) !important;
+  box-shadow: none !important;
+}

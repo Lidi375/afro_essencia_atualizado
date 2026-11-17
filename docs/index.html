@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AFRO ESSÊNCIA | Beleza com identidade</title>
+<meta name="description" content="Salão especializado em beleza afro em Belo Horizonte. Box braids, tranças nagô, twist, dreadlocks, hidratação, corte e coloração.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bronze:#D4A96A; --bronze-strong:#C89453; --rose:#A56758; --plum:#6A3550;
+  --bg:#FCFAF7; --warm:#F8F5F1; --surface:#EDE3D8; --text:#3D2A1C; --soft:#5A4438; --muted:#71574A;
+  --border:rgba(165,103,88,.2);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Montserrat,system-ui,sans-serif;color:var(--text);background:var(--bg);line-height:1.6}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+header{position:fixed;inset:0 0 auto 0;z-index:10;background:rgba(252,250,247,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;letter-spacing:.14em;font-size:14px}
+.brand img{height:36px;width:auto}
+nav{display:flex;gap:26px;font-size:13px;font-weight:500}
+nav a{text-decoration:none;color:var(--soft)}
+nav a:hover{color:var(--rose)}
+.btn{display:inline-block;padding:13px 28px;border-radius:999px;background:var(--plum);color:#fff;text-decoration:none;font-weight:600;font-size:14px;transition:.2s}
+.btn:hover{background:var(--rose)}
+.btn.outline{background:transparent;border:1.5px solid #fff}
+.btn.outline:hover{background:#fff;color:var(--plum)}
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;color:#fff;background:#3D2A1C url(img/coloracao-natural.jpg) center/cover}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(40,22,30,.78),rgba(40,22,30,.25))}
+.hero .wrap{position:relative;padding-top:68px}
+.label{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--bronze)}
+.hero h1{font-family:"Playfair Display",serif;font-size:clamp(38px,6vw,72px);line-height:1.1;margin:14px 0 18px}
+.hero h1 em{color:var(--bronze)}
+.hero p{max-width:480px;opacity:.92;margin-bottom:30px}
+.hero .actions{display:flex;gap:14px;flex-wrap:wrap}
+section{padding:96px 0}
+h2{font-family:"Playfair Display",serif;font-size:clamp(28px,3.6vw,42px);line-height:1.2;margin:8px 0 14px}
+.eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--rose);font-weight:600}
+.diffs{background:var(--warm);padding:64px 0}
+.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:32px}
+.diff .n{font-family:"Playfair Display",serif;font-size:40px;color:var(--bronze)}
+.diff h3{margin:4px 0 6px;font-size:17px}
+.diff p{font-size:14px;color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:24px;margin-top:40px}
+.card{background:#fff;border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:.25s}
+.card:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(106,53,80,.14)}
+.card img{aspect-ratio:4/3;object-fit:cover;width:100%}
+.card div{padding:18px 20px 22px}
+.card h3{font-size:17px;margin-bottom:6px}
+.card p{font-size:13.5px;color:var(--muted)}
+.about{background:var(--surface)}
+.about .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.about img.photo{border-radius:20px;width:100%;aspect-ratio:4/5;object-fit:cover}
+.script{font-family:"Dancing Script",cursive;font-size:clamp(40px,5vw,60px);color:var(--plum);line-height:1.1}
+.about p{margin:14px 0;color:var(--soft)}
+.stats{display:flex;gap:40px;margin-top:28px}
+.stats b{display:block;font-family:"Playfair Display",serif;font-size:34px;color:var(--rose)}
+.stats span{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.cta{background:linear-gradient(135deg,var(--plum),var(--rose));color:#fff;text-align:center}
+.cta .eyebrow{color:var(--bronze)}
+.cta p{margin:0 auto 28px;max-width:460px;opacity:.92}
+.cta .btn{background:#fff;color:var(--plum)}
+.contact .wrap{display:grid;grid-template-columns:1fr 1.2fr;gap:56px;align-items:start}
+.contact-cards{display:grid;gap:16px}
+.contact-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:20px 24px}
+.contact-card small{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--rose);font-weight:600}
+.tech{background:var(--warm)}
+.tech ul{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;list-style:none}
+.tech li{padding:8px 16px;border:1px solid var(--border);border-radius:999px;background:#fff;font-size:13px}
+.note{margin-top:26px;font-size:14px;color:var(--muted);max-width:720px}
+footer{background:#2a1a22;color:#d9c9bf;padding:36px 0;font-size:13px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+@media(max-width:820px){
+  nav{display:none}
+  .about .wrap,.contact .wrap{grid-template-columns:1fr;gap:32px}
+  section{padding:68px 0}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="#"><img src="img/logo.png" alt=""><span>AFRO ESSÊNCIA</span></a>
+    <nav>
+      <a href="#servicos">Serviços</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#contato">Contato</a>
+      <a href="#projeto">O projeto</a>
+    </nav>
+    <a class="btn" href="#contato">Agendar</a>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap">
+    <span class="label">AFRO ESSÊNCIA — Belo Horizonte</span>
+    <h1>Sua beleza é<br><em>nossa prioridade</em></h1>
+    <p>Especialistas em cabelo afro com atendimento personalizado e resultados que transformam.</p>
+    <div class="actions">
+      <a class="btn" href="#contato">Agendar horário</a>
+      <a class="btn outline" href="#servicos">Ver serviços</a>
+    </div>
+  </div>
+</section>
+
+<div class="diffs">
+  <div class="wrap grid4">
+    <div class="diff"><div class="n">01</div><h3>Especialização</h3><p>Técnicas específicas para cada tipo de cabelo afro, do 3C ao 4C.</p></div>
+    <div class="diff"><div class="n">02</div><h3>Atendimento Exclusivo</h3><p>Cuidado único para cada cliente, com escuta e atenção em cada detalhe.</p></div>
+    <div class="diff"><div class="n">03</div><h3>Profissionais Qualificados</h3><p>Equipe especializada, atualizada nas últimas técnicas capilares.</p></div>
+    <div class="diff"><div class="n">04</div><h3>Ambiente Premium</h3><p>Espaço moderno e acolhedor onde você se sente em casa.</p></div>
+  </div>
+</div>
+
+<section id="servicos">
+  <div class="wrap">
+    <span class="eyebrow">Nossos serviços</span>
+    <h2>Especialistas em beleza afro</h2>
+    <div class="cards">
+      <article class="card"><img loading="lazy" src="img/box-braids.jpg" alt="Box Braids"><div><h3>Box Braids</h3><p>Tranças independentes e versáteis, do couro cabeludo às pontas.</p></div></article>
+      <article class="card"><img loading="lazy" src="img/trancas-nago.jpg" alt="Tranças Nagô"><div><h3>Tranças Nagô</h3><p>Tranças rasas rente ao couro cabeludo, com visual elegante e estruturado.</p></div></article>
+      <article class="card"><img loading="lazy" src="img/twist.jpg" alt="Twist"><div><h3>Twist</h3><p>Dois mechões enrolados em direções opostas, realçando a textura natural.</p></div></article>
+      <article class="card"><img loading="lazy" src="img/dreadlocks.jpg" alt="Dreadlocks"><div><h3>Dreadlocks</h3><p>Mechas compactas e duradouras, de comprimentos variados.</p></div></article>
+      <article class="card"><img loading="lazy" src="img/hidratacao-capilar.jpg" alt="Hidratação Capilar"><div><h3>Hidratação Capilar</h3><p>Repõe água e nutrientes, devolvendo elasticidade, brilho e maciez.</p></div></article>
+      <article class="card"><img loading="lazy" src="img/corte-afro.jpg" alt="Corte Afro"><div><h3>Corte Afro</h3><p>Modelagem que respeita a estrutura e a textura de cada fio, do 3C ao 4C.</p></div></article>
+      <article class="card"><img loading="lazy" src="img/coloracao-natural.jpg" alt="Coloração Natural"><div><h3>Coloração Natural</h3><p>Cor vibrante e duradoura com produtos premium para cabelos afro.</p></div></article>
+      <article class="card"><img loading="lazy" src="img/penteado-para-festa.jpg" alt="Penteado para Festa"><div><h3>Penteado para Festa</h3><p>Penteados elaborados para casamentos, formaturas e eventos especiais.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="sobre">
+  <div class="wrap">
+    <img class="photo" loading="lazy" src="img/sobre-afro-essencia.jpg" alt="Nosso espaço">
+    <div>
+      <span class="eyebrow">Sobre a</span>
+      <h2 class="script">Afro Essência</h2>
+      <p>A Afro Essência nasceu do amor, do propósito e do desejo de valorizar a beleza natural em sua forma mais autêntica.</p>
+      <p>Mais que um salão, somos um espaço de acolhimento, autoestima e transformação. Cada serviço é feito com técnica, cuidado e respeito à sua essência.</p>
+      <p><strong>Afro Essência é sobre realçar o que te faz única. É sobre você.</strong></p>
+      <div class="stats">
+        <div><b>5+</b><span>Anos</span></div>
+        <div><b>500+</b><span>Clientes</span></div>
+        <div><b>8</b><span>Serviços</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <span class="eyebrow">Comece agora</span>
+    <h2>Pronta para viver sua melhor versão?</h2>
+    <p>Agende em poucos minutos e descubra o poder do cuidado especializado.</p>
+    <a class="btn" href="https://wa.me/5531999999999">Agendar pelo WhatsApp</a>
+  </div>
+</section>
+
+<section class="contact" id="contato">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Contato</span>
+      <h2>Venha nos visitar.</h2>
+      <p style="color:var(--soft)">Estamos em Belo Horizonte, prontas para recebê-la em um espaço feito com cuidado e dedicação.</p>
+    </div>
+    <div class="contact-cards">
+      <div class="contact-card"><small>Localização</small>Belo Horizonte — MG</div>
+      <div class="contact-card"><small>Horário de funcionamento</small>Terça a sábado · 09h às 18h</div>
+      <div class="contact-card"><small>WhatsApp</small><a href="https://wa.me/5531999999999">(31) 99999-9999</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="tech" id="projeto">
+  <div class="wrap">
+    <span class="eyebrow">Sobre o projeto</span>
+    <h2>Sistema de agendamento completo</h2>
+    <p style="color:var(--soft);max-width:720px">Esta página é a vitrine estática do projeto. O sistema completo — agendamento online, painéis de cliente, profissional e administrador, anamnese capilar, pagamentos via Mercado Pago, comissões e relatórios financeiros — está no código-fonte do repositório.</p>
+    <ul>
+      <li>PHP 8 (MVC + DAO + Services)</li>
+      <li>MySQL / MariaDB</li>
+      <li>PHPMailer</li>
+      <li>Mercado Pago</li>
+      <li>HTML · CSS · JavaScript</li>
+      <li>Testes com Pytest</li>
+    </ul>
+    <p class="note">O backend PHP precisa de um servidor com PHP e MySQL; o GitHub Pages hospeda somente esta vitrine.</p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 AFRO ESSÊNCIA · Beleza com identidade e cuidado.</span>
+    <span><a href="#servicos">Serviços</a> · <a href="#sobre">Sobre</a> · <a href="#contato">Contato</a></span>
+  </div>
+</footer>
+</body>
+</html>

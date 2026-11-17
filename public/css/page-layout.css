@@ -1,0 +1,140 @@
+@import url('design-system.css');
+@import url('icon-system.css');
+@import url('alert-system.css');
+
+/* ================================================================
+   page-layout.css — Afro Essência
+   Layout base para todas as subtelas autenticadas
+   (notificação, avaliação, pagamento, agendamento, anamnese, etc.)
+================================================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+/* ── Body base — block, não flex ───────────────────────────── */
+body {
+  font-family: 'Montserrat', 'Inter', sans-serif;
+  background: var(--ds-bg);
+  color: var(--ds-text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+
+/* ── Página com fundo cream suave ───────────────────────────── */
+body.page-bg,
+body.auth-background,
+body.page-scroll {
+  background: var(--ds-bg);
+}
+
+/* ── Container principal ────────────────────────────────────── */
+.page-container {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 32px 24px 80px;
+}
+
+@media (max-width: 600px) {
+  .page-container { padding: 20px 16px 60px; }
+}
+
+/* ── Header autenticado ─────────────────────────────────────── */
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid var(--ds-border-neutral);
+}
+.page-brand {
+  display: flex; align-items: center; gap: 12px;
+  text-decoration: none; color: var(--ds-text);
+}
+.page-brand img {
+  width: 36px; height: 36px; object-fit: contain;
+}
+.page-brand-name {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.35rem; font-weight: 700;
+  color: var(--ds-text); letter-spacing: .02em;
+}
+.page-logout {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 14px; font-weight: 600;
+  color: var(--ds-error); text-decoration: none;
+  padding: 7px 14px; border-radius: var(--ds-radius-sm);
+  border: 1px solid var(--ds-error-bdr);
+  background: var(--ds-error-bg);
+  transition: var(--ds-transition);
+}
+.page-logout:hover { background: var(--ds-error); color: #fff; }
+
+/* ── Link voltar ────────────────────────────────────────────── */
+/* .page-back — padronizado em icon-system.css */
+
+/* ── Título e subtítulo ─────────────────────────────────────── */
+.page-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(22px, 4vw, 30px);
+  font-weight: 700; color: var(--ds-text);
+  text-align: center; margin: 20px 0 6px;
+  letter-spacing: .02em;
+}
+.page-subtitle {
+  text-align: center; font-size: 14px;
+  color: var(--ds-text-muted); margin-bottom: 28px;
+  line-height: 1.6;
+}
+
+/* ── Alertas ────────────────────────────────────────────────── */
+.alert {
+  padding: 14px 18px; border-radius: var(--ds-radius-sm);
+  font-size: 14px; margin-bottom: 18px; line-height: 1.5;
+}
+.alert-ok  { background: var(--ds-success-bg); border: 1px solid var(--ds-success-bdr); color: var(--ds-success); }
+.alert-err { background: var(--ds-error-bg);   border: 1px solid var(--ds-error-bdr);   color: var(--ds-error);   }
+
+/* ── Estado vazio ───────────────────────────────────────────── */
+.empty-state {
+  text-align: center; padding: 60px 24px;
+  background: #fff;
+  border-radius: var(--ds-radius);
+  border: 1px dashed var(--ds-bronze-border);
+}
+.empty-state-icon { font-size: 3rem; display: block; margin-bottom: 16px; opacity: .5; }
+.empty-state h3   { font-size: 20px; font-weight: 700; color: var(--ds-text); margin: 0 0 8px; }
+.empty-state p    { font-size: 14px; color: var(--ds-text-muted); margin: 0 0 22px; line-height: 1.6; }
+
+/* ── Card genérico ──────────────────────────────────────────── */
+.page-card {
+  background: #fff;
+  border: 1px solid var(--ds-border-neutral);
+  border-radius: var(--ds-radius);
+  padding: 20px 22px;
+  margin-bottom: 12px;
+  box-shadow: var(--ds-shadow-sm);
+  transition: var(--ds-transition);
+}
+.page-card:hover {
+  box-shadow: var(--ds-shadow);
+  border-color: var(--ds-bronze-border);
+  transform: translateY(-2px);
+}
+
+/* ── Botão primário ─────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: linear-gradient(135deg, #6A3550 0%, #A56758 100%); color: #fff;
+  padding: 11px 24px; border-radius: var(--ds-radius-sm);
+  text-decoration: none; font-size: 14px; font-weight: 700;
+  border: none; cursor: pointer;
+  box-shadow: 0 8px 20px rgba(106,53,80,.28);
+  transition: transform .22s, box-shadow .22s, filter .22s;
+}
+.btn-primary:hover { filter: brightness(1.08); transform: translateY(-2px); box-shadow: 0 14px 28px rgba(106,53,80,.40); }
+
+/* ── Estrelas ───────────────────────────────────────────────── */
+.stars { display: inline-flex; align-items: center; gap: 2px; }

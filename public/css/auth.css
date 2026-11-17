@@ -1,0 +1,528 @@
+@import url('design-system.css');
+@import url('icon-system.css');
+@import url('alert-system.css');
+
+/* ================================================================
+   auth.css — Afro Essência v2.0
+   Login · Cadastro · Esqueci Senha · Redefinir Senha
+   Estética editorial light — split layout com foto editorial
+================================================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Montserrat', 'Inter', sans-serif;
+  background: var(--ds-surface);
+  color: var(--ds-text);
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Layout split: foto + formulário ─────────────────────────── */
+.auth-layout {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Lado esquerdo — foto editorial (fixa, fora do fluxo — nunca
+   influencia a altura da coluna do formulário ao lado) */
+.auth-visual {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--ds-surface-alt);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 48px;
+}
+
+.auth-visual-img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center 12%;
+  display: block;
+  filter: brightness(.88);
+}
+
+.auth-visual-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(45,35,28,.15) 0%,
+    rgba(45,35,28,.65) 70%,
+    rgba(45,35,28,.90) 100%
+  );
+}
+
+.auth-visual-brand {
+  position: absolute;
+  top: 36px; left: 40px;
+  display: flex; align-items: center; gap: 12px;
+  text-decoration: none;
+  z-index: 2;
+}
+.auth-visual-brand img { width: 40px; height: 40px; object-fit: contain; }
+.auth-visual-brand span {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.55rem; font-weight: 700;
+  color: rgba(252,250,247,.93);
+  letter-spacing: .02em;
+  line-height: 1;
+}
+
+.auth-visual-copy {
+  position: relative; z-index: 2;
+}
+.auth-visual-copy blockquote {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 700;
+  color: #FCFAF7;
+  line-height: 1.3;
+  margin-bottom: 16px;
+  letter-spacing: -.01em;
+}
+.auth-visual-copy cite {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .20em;
+  text-transform: uppercase;
+  color: rgba(252,250,247,.60);
+  font-style: normal;
+}
+
+/* Lado direito — formulário */
+.auth-form-side {
+  position: relative;
+  margin-left: 50%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: visible;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 52px 48px;
+  background: var(--ds-bg);
+}
+
+.auth-form-side::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 260px;
+  height: 260px;
+  background: url('/afro_essencia/public/imagens/logo-flor.png') no-repeat center / contain;
+  opacity: .06;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.auth-form-side::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(212,169,106,.14) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Container do card de login */
+.login-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 420px;
+  animation: authIn .55s var(--ds-ease) both;
+  text-align: center;
+}
+
+@keyframes authIn {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Branding mobile / fallback */
+.brand-header {
+  display: none; /* oculto no desktop — a marca aparece no painel visual */
+  align-items: center; justify-content: center; gap: 12px;
+  margin: 0 auto 28px;
+}
+.brand-link {
+  display: flex; align-items: center; gap: 12px;
+  text-decoration: none; color: inherit;
+}
+#logo-desenho { width: 38px; height: 38px; object-fit: contain; display: block; }
+.logo {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.65rem; font-weight: 700;
+  color: var(--ds-text);
+  letter-spacing: .02em; line-height: 1;
+}
+
+/* Título */
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 2.8vw, 2rem);
+  font-weight: 700;
+  color: var(--ds-text);
+  margin-bottom: 8px;
+  line-height: 1.25;
+}
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 180px;
+  margin: 14px auto 22px;
+}
+.auth-divider span {
+  flex: 1;
+  height: 1px;
+  background: #9C6A28;
+  opacity: .5;
+}
+.auth-divider img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  opacity: .85;
+}
+
+.auth-subtitle {
+  font-size: var(--ds-text-sm);
+  color: var(--ds-text-muted);
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+/* ── Campos ──────────────────────────────────────────────────── */
+.input-group {
+  position: relative;
+  margin-bottom: 14px;
+  text-align: left;
+}
+
+.input-icon {
+  position: absolute;
+  left: 14px; top: 50%;
+  transform: translateY(-50%);
+  color: var(--ds-text-muted);
+  z-index: 2; pointer-events: none;
+  display: flex; align-items: center;
+}
+.input-icon svg { width: 16px; height: 16px; }
+
+.input-field {
+  width: 100%;
+  font-family: 'Montserrat', 'Inter', sans-serif;
+  font-size: var(--ds-text-base);
+  color: var(--ds-text);
+  background: #FFFFFF;
+  border: 1px solid rgba(69,53,44,.15);
+  border-radius: var(--ds-radius-sm);
+  padding: 12px 42px 12px 44px;
+  outline: none;
+  transition: border-color .2s, box-shadow .2s;
+  line-height: var(--ds-lh-snug);
+}
+.input-field::placeholder { color: #A89080; font-size: var(--ds-text-sm); }
+.input-field:focus {
+  border-color: rgba(165,103,88,.70);
+  background: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(106,53,80,.12);
+}
+.input-field:focus-visible { outline: none; }
+
+/* sem ícone esquerdo */
+.input-field.no-icon { padding-left: 16px; }
+
+/* Toggle senha */
+.toggle-pass {
+  position: absolute; right: 13px; top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer; z-index: 10;
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--ds-text-muted);
+  transition: color .18s;
+}
+.toggle-pass:hover { color: var(--ds-text); }
+.toggle-pass svg { stroke: currentColor; stroke-width: 2; width: 16px; height: 16px; }
+
+/* ── Botão submit ─────────────────────────────────────────────── */
+.btn-submit {
+  width: 100%;
+  padding: 14px;
+  margin: 22px 0 6px;
+  display: block;
+  background: linear-gradient(135deg, #6A3550 0%, #A56758 100%);
+  color: #FFFFFF;
+  border: none;
+  border-radius: var(--ds-radius-full);
+  font-family: 'Montserrat', 'Inter', sans-serif;
+  font-weight: var(--ds-weight-bold);
+  font-size: var(--ds-text-sm);
+  text-transform: uppercase;
+  letter-spacing: .16em;
+  cursor: pointer;
+  transition: transform .22s, box-shadow .22s, filter .22s;
+  box-shadow: 0 10px 24px rgba(106,53,80,.28);
+  min-height: 50px;
+}
+.btn-submit:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+  box-shadow: 0 16px 36px rgba(106,53,80,.40);
+}
+.btn-submit:focus-visible { outline: 2px solid #A56758; outline-offset: 3px; }
+
+/* ── Links ──────────────────────────────────────────────────── */
+.forgot-link {
+  display: block; text-align: center;
+  color: var(--ds-bronze-strong);
+  font-size: var(--ds-text-sm);
+  font-weight: var(--ds-weight-medium);
+  text-decoration: none;
+  letter-spacing: .03em; margin-top: 12px;
+  transition: color .2s;
+}
+.forgot-link:hover { color: #A56758; text-decoration: underline; }
+
+.back-home-link {
+  display: inline-flex; align-items: center; gap: 4px;
+  color: var(--ds-text-muted);
+  font-size: var(--ds-text-xs);
+  text-decoration: none; margin-top: 6px;
+  transition: color .2s;
+}
+.back-home-link:hover { color: var(--ds-bronze-strong); }
+
+/* ── Divisor ─────────────────────────────────────────────────── */
+.auth-divider {
+  display: flex; align-items: center; gap: 14px;
+  margin: 18px 0; color: var(--ds-text-muted);
+  font-size: var(--ds-text-xs); font-weight: 500;
+}
+.auth-divider::before,
+.auth-divider::after {
+  content: ''; flex: 1; height: 1px;
+  background: rgba(69,53,44,.12);
+}
+
+/* ── Feedback ─────────────────────────────────────────────────── */
+.sucesso {
+  font-size: var(--ds-text-sm); font-weight: var(--ds-weight-medium);
+  color: var(--ds-success); text-align: center;
+  margin-bottom: 12px; padding: 10px 14px;
+  background: var(--ds-success-bg);
+  border: 1px solid var(--ds-success-bdr);
+  border-radius: var(--ds-radius-xs);
+}
+.erro {
+  font-size: var(--ds-text-sm); font-weight: var(--ds-weight-medium);
+  color: var(--ds-error); text-align: center;
+  margin-bottom: 12px; padding: 10px 14px;
+  background: var(--ds-error-bg);
+  border: 1px solid var(--ds-error-bdr);
+  border-radius: var(--ds-radius-xs);
+}
+
+/* ── Flatpickr tema light ─────────────────────────────────────── */
+.flatpickr-calendar {
+  background: #FFFFFF !important;
+  border: 1px solid var(--ds-border-neutral) !important;
+  box-shadow: var(--ds-shadow-md) !important;
+  border-radius: var(--ds-radius-sm) !important;
+  font-family: 'Montserrat', 'Inter', sans-serif !important;
+}
+.flatpickr-month   { color: var(--ds-text) !important; background: var(--ds-surface) !important; }
+.flatpickr-weekday { color: var(--ds-text-muted) !important; font-weight: 700 !important; }
+.flatpickr-day     { color: var(--ds-text) !important; border-radius: 6px !important; }
+.flatpickr-day:hover    { background: var(--ds-bronze-soft) !important; color: var(--ds-text) !important; }
+.flatpickr-day.selected { background: linear-gradient(135deg, #6A3550 0%, #A56758 100%) !important; color: #FFFFFF !important; border-radius: 6px !important; box-shadow: 0 4px 12px rgba(106,53,80,.30) !important; }
+.flatpickr-day.today    { border: 1.5px solid #A56758 !important; }
+
+/* ── Select horário ──────────────────────────────────────────── */
+.select-wrapper { position: relative; }
+.select-wrapper::after {
+  content: ''; position: absolute; right: 14px; top: 50%;
+  transform: translateY(-50%);
+  width: 0; height: 0;
+  border-left: 5px solid transparent; border-right: 5px solid transparent;
+  border-top: 6px solid var(--ds-text-muted); pointer-events: none;
+}
+
+#hora {
+  width: 100%; padding: 12px 40px 12px 14px;
+  background: #FFFFFF; color: var(--ds-text);
+  border: 1px solid rgba(69,53,44,.15);
+  border-radius: var(--ds-radius-sm);
+  font-family: 'Montserrat', 'Inter', sans-serif; font-size: var(--ds-text-base);
+  appearance: none; -webkit-appearance: none;
+  cursor: pointer; outline: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+#hora:focus { border-color: rgba(165,103,88,.70); box-shadow: 0 0 0 3px rgba(106,53,80,.12); }
+#hora option { background: #FFFFFF; color: var(--ds-text); }
+#hora:disabled { opacity: .45; cursor: not-allowed; }
+
+/* ── Cadastro page ───────────────────────────────────────────── */
+body.cadastro-page .input-field {
+  background: #FFFFFF;
+  border: 1px solid rgba(69,53,44,.15);
+  color: var(--ds-text);
+}
+body.cadastro-page select.input-field {
+  appearance: none; -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%239C8778' height='20' viewBox='0 0 24 24'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 13px center;
+  padding-right: 40px; background-color: #FFFFFF;
+}
+body.cadastro-page select.input-field option { background: #FFFFFF; color: var(--ds-text); }
+body.cadastro-page .custom-select { position: relative; width: 100%; cursor: pointer; }
+body.cadastro-page .selected {
+  padding: 12px 38px 12px 14px; border-radius: var(--ds-radius-sm);
+  background: #FFFFFF; border: 1px solid rgba(69,53,44,.15);
+  color: var(--ds-text); font-size: var(--ds-text-base);
+  font-family: 'Montserrat', 'Inter', sans-serif; position: relative; transition: border-color .2s;
+}
+body.cadastro-page .custom-select:hover .selected { border-color: var(--ds-bronze-border); }
+body.cadastro-page .selected::after {
+  content: ''; position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+  width: 0; height: 0;
+  border-left: 5px solid transparent; border-right: 5px solid transparent;
+  border-top: 6px solid var(--ds-text-muted); pointer-events: none; transition: transform .2s;
+}
+body.cadastro-page .custom-select.active .selected::after { transform: translateY(-50%) rotate(180deg); }
+body.cadastro-page .options {
+  display: none; position: absolute; width: 100%;
+  top: calc(100% + 4px);
+  background: #FFFFFF; border: 1px solid var(--ds-border-neutral);
+  border-radius: var(--ds-radius-sm); z-index: 1000;
+  box-shadow: var(--ds-shadow-md); max-height: 220px; overflow-y: auto;
+}
+body.cadastro-page .option {
+  padding: 11px 14px; color: var(--ds-text);
+  font-size: var(--ds-text-sm); font-family: 'Inter', sans-serif;
+  cursor: pointer; transition: background .15s;
+}
+body.cadastro-page .option:hover { background: var(--ds-bronze-soft); color: var(--ds-bronze-strong); }
+body.cadastro-page .custom-select.active .options { display: block; }
+
+/* ── Responsivo ──────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .auth-visual { display: none; }
+  .auth-form-side { margin-left: 0; padding: 40px 24px; min-height: 100vh; }
+  .brand-header { display: inline-flex; } /* exibe a marca no mobile */
+}
+
+@media (max-width: 480px) {
+  .auth-form-side { padding: 32px 16px; }
+  h1 { font-size: 1.6rem; }
+  .login-container { max-width: 100%; }
+  .btn-submit { font-size: var(--ds-text-xs); }
+}
+
+@media (max-width: 375px) {
+  .auth-form-side { padding: 24px 14px; }
+  h1 { font-size: 1.4rem; margin-bottom: 20px; }
+}
+
+/* ── FASE 15/16: Agendamento premium — formulários ──────────── */
+.login-container h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 700;
+  color: var(--ds-text);
+  margin-bottom: 24px;
+  letter-spacing: .01em;
+}
+
+/* FASE 17: Campo de data — ícone alinhado e contraste correto */
+.date-group {
+  position: relative;
+}
+.date-group .input-field {
+  padding-right: 48px;
+}
+.date-icon {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex; align-items: center; justify-content: center;
+  pointer-events: none;
+  color: var(--ds-text-muted);
+  z-index: 3;
+}
+.date-icon svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; }
+
+/* FASE 18: Padronização de todos os campos com ícone */
+.input-group {
+  position: relative;
+  margin-bottom: 16px;
+}
+.input-icon {
+  position: absolute;
+  left: 14px; top: 50%; transform: translateY(-50%);
+  display: flex; align-items: center;
+  color: var(--ds-text-muted);
+  pointer-events: none;
+  z-index: 2;
+}
+.input-icon svg { width: 17px; height: 17px; }
+.input-field {
+  width: 100%; padding: 13px 16px 13px 44px;
+  border: 1.5px solid var(--ds-border-neutral);
+  border-radius: var(--ds-radius-sm);
+  font-size: 15px; color: var(--ds-text);
+  background: #fff;
+  transition: border-color .18s, box-shadow .18s;
+}
+.input-field:focus {
+  border-color: #A56758;
+  box-shadow: 0 0 0 3px var(--ds-bronze-soft);
+  outline: none;
+}
+.input-field.no-icon { padding-left: 16px; }
+
+/* FASE 16: Agrupamento de ações no formulário */
+.actions {
+  display: flex; flex-direction: column; gap: 12px;
+  margin-top: 20px;
+}
+.btn-submit {
+  width: 100%; padding: 14px;
+  background: linear-gradient(135deg, #6A3550 0%, #A56758 100%); color: #fff;
+  border: none; border-radius: var(--ds-radius-sm);
+  font-size: 15px; font-weight: 700; letter-spacing: .05em;
+  cursor: pointer; transition: transform .22s, box-shadow .22s, filter .22s;
+  font-family: 'Montserrat', sans-serif; box-shadow: 0 10px 24px rgba(106,53,80,.28);
+}
+.btn-submit:hover { background: linear-gradient(135deg, #6A3550 0%, #A56758 100%); filter: brightness(1.08); transform: translateY(-2px); box-shadow: 0 16px 32px rgba(106,53,80,.40); }
+.btn-submit:active { transform: translateY(0); }
+
+/* FASE 19: Links sem CSS — aplicar design system */
+.forgot-link {
+  text-align: center; font-size: 14px;
+  color: var(--ds-text-muted); text-decoration: none;
+  transition: color .18s;
+}
+.forgot-link:hover { color: #A56758; }
+.back-home-link { color: var(--ds-text-subtle); }
+.back-home-link:hover { color: #A56758; }

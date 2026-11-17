@@ -1,0 +1,123 @@
+@import url('design-system.css');
+@import url('icon-system.css');
+
+/* ================================================================
+   servico-detalhe.css — Afro Essência v2.0
+   Página de detalhes de serviço · Estética editorial light/cream
+   CLASSES IDÊNTICAS — visual atualizado
+================================================================ */
+
+:root {
+  --sv-radius:    var(--ds-radius);
+  --sv-radius-sm: var(--ds-radius-sm);
+  --sv-transition: all .3s cubic-bezier(.4,0,.2,1);
+  --gold: var(--ds-bronze-strong);
+  --bg:   var(--ds-bg);
+  --text: var(--ds-text);
+}
+
+/* ── Hero do serviço ─────────────────────────────────────────── */
+.sv-hero { position: relative; min-height: 480px; display: flex; align-items: flex-end; padding-top: 80px; overflow: hidden; }
+
+.sv-hero-img { position: absolute; inset: 0; background-size: cover; background-position: center; background-color: var(--ds-surface-alt); }
+
+.sv-hero-img--default {
+  background:
+    radial-gradient(ellipse at 30% 60%, rgba(106,53,80,.18) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 20%, rgba(167,124,82,.14) 0%, transparent 50%),
+    var(--ds-surface-alt);
+}
+
+.sv-hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(45,35,28,.45) 0%, rgba(45,35,28,.70) 60%, rgba(45,35,28,.92) 100%);
+}
+
+.sv-hero-content { position: relative; z-index: 2; max-width: 900px; margin: 0 auto; width: 100%; padding: 60px 52px 64px; }
+
+/* Breadcrumb */
+.sv-breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 14px; color: rgba(252,250,247,.55); margin-bottom: 20px; flex-wrap: wrap; }
+.sv-breadcrumb a { color: rgba(252,250,247,.55); text-decoration: none; transition: color .2s; }
+.sv-breadcrumb a:hover { color: var(--ds-bronze-light); }
+.sv-breadcrumb span:last-child { color: var(--ds-bronze-light); }
+
+/* Eyebrow */
+.sv-eyebrow { display: inline-block; font-size: 14px; letter-spacing: .14em; text-transform: uppercase; color: var(--ds-bronze-light); font-weight: 600; margin-bottom: 12px; padding: 4px 10px; border: 1px solid rgba(216,185,130,.35); border-radius: var(--ds-radius-full); background: rgba(216,185,130,.12); }
+
+.sv-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; color: #FCFAF7; line-height: 1.15; margin-bottom: 16px; }
+.sv-intro { font-size: .95rem; color: rgba(252,250,247,.82); line-height: 1.7; max-width: 620px; margin-bottom: 28px; }
+
+/* Badges */
+.sv-badges { display: flex; flex-wrap: wrap; gap: 10px; }
+.sv-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 500; color: rgba(252,250,247,.85); background: rgba(252,250,247,.12); border: 1px solid rgba(252,250,247,.25); border-radius: var(--ds-radius-full); padding: 6px 14px; backdrop-filter: blur(4px); }
+.sv-badge svg { opacity: .8; }
+
+/* ── Corpo da página ─────────────────────────────────────────── */
+.sv-page-body { background: var(--ds-bg); padding: 64px 52px 80px; }
+.sv-content-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 320px; gap: 48px; align-items: start; }
+
+/* Seções */
+.sv-section { margin-bottom: 52px; }
+.sv-section h2 { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 600; color: var(--ds-text); margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid var(--ds-border-neutral); }
+
+/* Benefícios */
+.sv-benefits-list { list-style: none; display: grid; grid-template-columns: repeat(auto-fill,minmax(260px,1fr)); gap: 12px; }
+.sv-benefits-list li { display: flex; align-items: flex-start; gap: 10px; background: rgba(212,169,106,.06); border: 1px solid var(--ds-bronze-border); border-radius: var(--ds-radius-sm); padding: 12px 16px; font-size: .875rem; color: var(--ds-text-soft); line-height: 1.5; }
+.sv-check { display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: rgba(45,106,79,.14); border: 1px solid rgba(45,106,79,.30); color: var(--ds-success); flex-shrink: 0; margin-top: 1px; }
+
+/* Cuidados */
+.sv-section--care { background: var(--ds-surface); border: 1px solid var(--ds-border-neutral); border-radius: var(--sv-radius); padding: 32px; }
+.sv-care-intro { font-size: .875rem; color: var(--ds-text-muted); margin-bottom: 20px; line-height: 1.65; }
+.sv-care-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.sv-care-list li { display: flex; align-items: flex-start; gap: 12px; font-size: .875rem; color: var(--ds-text-soft); line-height: 1.6; padding-bottom: 12px; border-bottom: 1px solid var(--ds-border-neutral); }
+.sv-care-list li:last-child { border-bottom: none; padding-bottom: 0; }
+.sv-care-icon { display: flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; background: var(--ds-bronze-soft); color: var(--ds-bronze-strong); flex-shrink: 0; margin-top: 1px; }
+
+/* ── Sidebar ─────────────────────────────────────────────────── */
+.sv-sidebar { position: sticky; top: 100px; display: flex; flex-direction: column; gap: 16px; }
+
+.sv-summary-card { background: #FFFFFF; border: 1px solid var(--ds-border-neutral); border-radius: var(--sv-radius); padding: 28px 24px; display: flex; flex-direction: column; gap: 0; box-shadow: var(--ds-shadow-sm); }
+.sv-summary-card h3 { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 600; color: var(--ds-text); margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--ds-border-neutral); }
+
+.sv-summary-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(69,53,44,.06); font-size: .875rem; }
+.sv-summary-row:last-of-type { border-bottom: none; }
+.sv-summary-label { color: var(--ds-text-muted); font-weight: 500; flex-shrink: 0; }
+.sv-summary-value { color: var(--ds-text); text-align: right; font-weight: 500; line-height: 1.4; }
+.sv-summary-row--price .sv-price { font-size: 1rem; color: var(--ds-bronze-strong); font-weight: 700; }
+.sv-summary-divider { height: 1px; background: var(--ds-border-neutral); margin: 18px 0 20px; }
+
+.sv-btn-agendar { display: flex; align-items: center; justify-content: center; gap: 9px; background: linear-gradient(135deg, #6A3550 0%, #A56758 100%); color: #FFFFFF; text-decoration: none; font-size: .875rem; font-weight: 700; letter-spacing: .10em; text-transform: uppercase; padding: 14px 20px; border-radius: var(--ds-radius-full); transition: var(--sv-transition); text-align: center; box-shadow: 0 10px 24px rgba(106,53,80,.28); }
+.sv-btn-agendar:hover { transform: translateY(-2px); filter: brightness(1.08); box-shadow: 0 16px 32px rgba(106,53,80,.38); }
+.sv-btn-agendar svg { flex-shrink: 0; }
+
+.sv-login-hint { font-size: .875rem; color: var(--ds-text-muted); text-align: center; margin-top: 10px; line-height: 1.5; }
+
+.sv-back-link { display: flex; align-items: center; gap: 7px; color: var(--ds-text-muted); text-decoration: none; font-size: .8rem; font-weight: 500; transition: color .2s; justify-content: center; padding: 10px; }
+.sv-back-link:hover { color: var(--ds-bronze-strong); }
+
+.sv-cta { border-top: 1px solid var(--ds-border-neutral); }
+
+/* ── Responsivo ──────────────────────────────────────────────── */
+@media (max-width: 960px) { .sv-content-grid { grid-template-columns: 1fr; } .sv-sidebar { position: static; order: -1; } .sv-page-body { padding: 40px 24px 60px; } }
+@media (max-width: 768px) { .sv-hero-content { padding: 40px 24px 48px; } .sv-title { font-size: 1.8rem; } .sv-benefits-list { grid-template-columns: 1fr; } }
+@media (max-width: 480px) { .sv-hero-content { padding: 32px 16px 40px; } .sv-page-body { padding: 28px 16px 48px; } .sv-section--care { padding: 20px 16px; } .sv-badges { gap: 7px; } .sv-badge { font-size: 14px; padding: 5px 10px; } }
+
+@media (max-width: 960px) {
+  .sv-content-grid { grid-template-columns: 1fr !important; }
+  .sv-sidebar { order: -1; }
+  .sv-card { padding: 20px; }
+  .sv-price { font-size: 1.8rem; }
+}
+@media (max-width: 640px) {
+  .sv-hero { min-height: 220px; padding: 60px 20px 28px; }
+  .sv-hero-title { font-size: 1.6rem; }
+  .sv-hero-sub { font-size: 13px; }
+  .sv-section-title { font-size: 1.1rem; }
+  .sv-btn-agendar { font-size: 13px; padding: 12px 18px; }
+  .sv-badges { flex-wrap: wrap; gap: 6px; }
+}
+@media (max-width: 480px) {
+  .sv-hero-title { font-size: 1.4rem; }
+  .sv-profis-grid { grid-template-columns: 1fr !important; }
+  .sv-galeria-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}

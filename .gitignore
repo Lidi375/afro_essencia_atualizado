@@ -1,0 +1,28 @@
+# Credenciais e ambiente
+.env
+config/database.php
+config/mail.php
+config/pagamento.php
+
+# Dados de usuários e logs
+logs/*
+!logs/.htaccess
+!logs/.gitkeep
+uploads/candidaturas/*
+!uploads/candidaturas/.htaccess
+!uploads/candidaturas/.gitkeep
+
+# Dependências (PHPMailer já vem em vendor/ neste projeto)
+# vendor/
+
+# Testes / Python
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# SO / editores
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp

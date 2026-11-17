@@ -1,0 +1,200 @@
+/* ================================================================
+   alert-system.css — AFRO ESSÊNCIA
+   Sistema unificado de alertas v1.0
+   Substitui: .erro · .sucesso · .alert-sucesso · .alert-erro
+              .alert-success · .alert-danger · .alert-ok · .alert-err
+              .cl-alert-success · .cl-alert-danger · .ds-alert-*
+   NÃO alterar controllers, models ou banco.
+================================================================ */
+
+/* ── Animações ──────────────────────────────────────────────── */
+@keyframes af-alert-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes af-alert-out {
+  from { opacity: 1; transform: translateY(0);  max-height: 120px; margin-bottom: 18px; }
+  to   { opacity: 0; transform: translateY(-6px); max-height: 0;   margin-bottom: 0;   }
+}
+
+/* ── Base ───────────────────────────────────────────────────── */
+.af-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px 14px 18px;
+  border-radius: 12px;
+  border-left: 4px solid transparent;
+  margin-bottom: 18px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13.5px;
+  font-weight: 500;
+  line-height: 1.55;
+  position: relative;
+  animation: af-alert-in .25s ease both;
+  overflow: hidden;
+}
+.af-alert.af-alert--dismissing {
+  animation: af-alert-out .35s ease forwards;
+  pointer-events: none;
+}
+
+/* Ícone */
+.af-alert__icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.af-alert__icon svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 2;
+}
+
+/* Corpo */
+.af-alert__body { flex: 1; min-width: 0; }
+.af-alert__title {
+  font-weight: 700;
+  font-size: 13.5px;
+  margin-bottom: 2px;
+  line-height: 1.3;
+}
+.af-alert__msg {
+  font-size: 13px;
+  line-height: 1.55;
+  opacity: .88;
+}
+/* Quando não há título, o msg ocupa a linha diretamente */
+.af-alert--simple .af-alert__msg {
+  font-weight: 500;
+  opacity: 1;
+}
+
+/* Botão fechar */
+.af-alert__close {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: .55;
+  transition: opacity .18s, background .18s;
+  padding: 0;
+  margin-top: -1px;
+}
+.af-alert__close:hover { opacity: 1; background: rgba(0,0,0,.07); }
+.af-alert__close svg { width: 14px; height: 14px; stroke-width: 2.2; }
+
+/* Barra de progresso auto-dismiss */
+.af-alert__bar {
+  position: absolute;
+  bottom: 0; left: 0;
+  height: 3px;
+  border-radius: 0 0 0 12px;
+  animation: af-bar linear forwards;
+  transform-origin: left;
+}
+@keyframes af-bar {
+  from { width: 100%; }
+  to   { width: 0%; }
+}
+
+/* ── VARIANTES ──────────────────────────────────────────────── */
+
+/* Sucesso */
+.af-alert--success {
+  background: rgba(45,106,79,.08);
+  border-left-color: #2D6A4F;
+  color: #1E4D38;
+}
+.af-alert--success .af-alert__icon { color: #2D6A4F; }
+.af-alert--success .af-alert__bar  { background: #2D6A4F; }
+
+/* Erro */
+.af-alert--error {
+  background: rgba(155,35,53,.07);
+  border-left-color: #9B2335;
+  color: #7A1A28;
+}
+.af-alert--error .af-alert__icon { color: #9B2335; }
+.af-alert--error .af-alert__bar  { background: #9B2335; }
+
+/* Aviso (warning) — tom âmbar harmônico */
+.af-alert--warning {
+  background: rgba(169,119,55,.10);
+  border-left-color: #A97737;
+  color: #7A5520;
+}
+.af-alert--warning .af-alert__icon { color: #A97737; }
+.af-alert--warning .af-alert__bar  { background: #A97737; }
+
+/* Info — tom afro vinho */
+.af-alert--info {
+  background: linear-gradient(135deg, rgba(106,53,80,.09) 0%, rgba(165,103,88,.06) 100%);
+  border-left-color: #A56758;
+  color: #6A3550;
+}
+.af-alert--info .af-alert__icon { color: #A56758; }
+.af-alert--info .af-alert__bar  { background: linear-gradient(90deg, #6A3550, #A56758); }
+
+/* ── ALIASES — retrocompatibilidade com classes antigas ──────── */
+/* Todas as classes antigas recebem a mesma aparência via herança */
+
+/* Sucesso */
+.alert-success,
+.alert-sucesso,
+.alert-ok,
+.cl-alert-success,
+.ds-alert.ds-alert-success,
+.sucesso {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 12px !important;
+  padding: 14px 16px 14px 18px !important;
+  border-radius: 12px !important;
+  border-left: 4px solid #2D6A4F !important;
+  background: rgba(45,106,79,.08) !important;
+  color: #1E4D38 !important;
+  font-size: 13.5px !important;
+  font-weight: 500 !important;
+  line-height: 1.55 !important;
+  margin-bottom: 18px !important;
+  animation: af-alert-in .25s ease both !important;
+}
+
+/* Erro */
+.alert-danger,
+.alert-erro,
+.alert-err,
+.cl-alert-danger,
+.ds-alert.ds-alert-error,
+.erro {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 12px !important;
+  padding: 14px 16px 14px 18px !important;
+  border-radius: 12px !important;
+  border-left: 4px solid #9B2335 !important;
+  background: rgba(155,35,53,.07) !important;
+  color: #7A1A28 !important;
+  font-size: 13.5px !important;
+  font-weight: 500 !important;
+  line-height: 1.55 !important;
+  margin-bottom: 18px !important;
+  animation: af-alert-in .25s ease both !important;
+}
+
+/* Responsivo */
+@media (max-width: 480px) {
+  .af-alert { padding: 12px 12px 12px 14px; border-radius: 10px; font-size: 13px; }
+  .af-alert__title { font-size: 13px; }
+}

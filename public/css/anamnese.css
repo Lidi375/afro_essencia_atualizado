@@ -1,0 +1,400 @@
+@import url('design-system.css');
+@import url('icon-system.css');
+@import url('alert-system.css');
+
+/* ================================================================
+   anamnese.css — Formulário de anamnese v3.0
+   Alto contraste · Design System Afro Essência
+================================================================ */
+
+/* ── Reset base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+/* ── Link voltar ────────────────────────────────────────────── */
+/* .link-voltar — padronizado em icon-system.css */
+
+/* ── Título e subtítulo ─────────────────────────────────────── */
+.page-title {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: var(--ds-text-2xl);
+    font-weight: 700;
+    color: var(--ds-text);          /* #45352C — contraste 10:1 */
+    letter-spacing: .03em;
+    line-height: 1.2;
+    margin-bottom: 8px;
+}
+.page-subtitle {
+    text-align: center;
+    font-size: var(--ds-text-sm);
+    color: var(--ds-text-soft);     /* #5E5651 — contraste 7:1 */
+    margin-bottom: 32px;
+    line-height: 1.6;
+}
+
+/* ── Alertas ────────────────────────────────────────────────── */
+.alert-sucesso {
+    background: var(--ds-success-bg);
+    border: 1px solid var(--ds-success-bdr);
+    color: var(--ds-success);
+    padding: 13px 18px;
+    border-radius: var(--ds-radius-sm);
+    margin-bottom: 22px;
+    text-align: center;
+    font-size: var(--ds-text-sm);
+    font-weight: 600;
+}
+.alert-erro {
+    background: var(--ds-error-bg);
+    border: 1px solid var(--ds-error-bdr);
+    color: var(--ds-error);
+    padding: 13px 18px;
+    border-radius: var(--ds-radius-sm);
+    margin-bottom: 22px;
+    text-align: center;
+    font-size: var(--ds-text-sm);
+    font-weight: 600;
+}
+
+/* ── Seção card ─────────────────────────────────────────────── */
+.anamnese-section {
+    background: #FFFFFF;
+    border: 1px solid var(--ds-warm-300);  /* borda visível #D7C7B8 */
+    border-radius: var(--ds-radius);
+    padding: 28px 30px;
+    margin-bottom: 20px;
+    box-shadow: var(--ds-shadow-sm);
+}
+
+/* ── Cabeçalho de seção ─────────────────────────────────────── */
+.section-heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Playfair Display', serif;
+    font-size: var(--ds-text-md);
+    font-weight: 700;
+    color: var(--ds-text);          /* #45352C */
+    letter-spacing: .02em;
+    margin: 0 0 20px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--ds-bronze-soft);
+    line-height: 1.3;
+}
+.section-heading svg {
+    width: 18px;
+    height: 18px;
+    color: var(--ds-bronze-strong);
+    opacity: 1;
+    flex-shrink: 0;
+}
+
+/* ── Grid de campos ─────────────────────────────────────────── */
+.fields-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 24px;
+}
+.fields-grid.single { grid-template-columns: 1fr; }
+.fields-grid.triple { grid-template-columns: 1fr 1fr 1fr; }
+
+/* ── Grupo de campo ─────────────────────────────────────────── */
+.field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+.field-group.full { grid-column: 1 / -1; }
+
+/* ── Label ──────────────────────────────────────────────────── */
+.field-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--ds-text);           /* #45352C — alto contraste */
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    line-height: 1.3;
+}
+
+/* ── Inputs, Selects, Textareas ─────────────────────────────── */
+.field-input,
+.field-select,
+.field-textarea {
+    font-family: 'Montserrat', sans-serif;
+    font-size: var(--ds-text-base);  /* 15px */
+    color: var(--ds-text);           /* #45352C */
+    background: var(--ds-bg-warm);   /* #F8F5F1 — fundo ligeiramente diferente */
+    border: 1.5px solid var(--ds-warm-400); /* #CBB8A6 — borda visível */
+    border-radius: var(--ds-radius-sm);
+    padding: 11px 14px;
+    outline: none;
+    transition: border-color .2s, box-shadow .2s, background .2s;
+    width: 100%;
+    line-height: 1.5;
+}
+.field-input::placeholder,
+.field-textarea::placeholder {
+    color: var(--ds-text-subtle);    /* #A89080 */
+    font-size: var(--ds-text-sm);
+}
+.field-input:focus,
+.field-select:focus,
+.field-textarea:focus {
+    border-color: var(--ds-bronze);
+    background: #FFFFFF;
+    box-shadow: 0 0 0 3px rgba(106,53,80,.14);
+}
+.field-input:hover:not(:focus),
+.field-select:hover:not(:focus),
+.field-textarea:hover:not(:focus) {
+    border-color: var(--ds-warm-500); /* #9C8778 */
+}
+.field-textarea {
+    min-height: 96px;
+    resize: vertical;
+}
+
+/* ── Select customizado ─────────────────────────────────────── */
+.field-select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='%23C89453' height='20' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 13px center;
+    padding-right: 40px;
+    cursor: pointer;
+}
+.field-select option {
+    background: #FFFFFF;
+    color: var(--ds-text);
+}
+
+/* ── Toggle (checkbox customizado) ─────────────────────────── */
+/* Estrutura: .toggle-group > input.toggle-checkbox + label.toggle-label > (span.toggle-text + span.toggle-switch) */
+.toggle-group {
+    display: flex;
+    align-items: center;
+    padding: 14px 16px;
+    background: var(--ds-bg-warm);
+    border: 1.5px solid var(--ds-warm-400);
+    border-radius: var(--ds-radius-sm);
+    cursor: pointer;
+    transition: border-color .2s, background .2s;
+}
+.toggle-group:hover {
+    border-color: var(--ds-bronze);
+    background: rgba(106,53,80,.06);
+}
+/* Esconde o checkbox nativo mas mantém acessibilidade */
+.toggle-checkbox {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+    pointer-events: none;
+}
+/* Label ocupa toda a largura: texto à esquerda, switch sempre alinhado à direita
+   — independente do tamanho do texto, garantindo distribuição consistente. */
+.toggle-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    user-select: none;
+}
+.toggle-text {
+    font-size: var(--ds-text-sm);
+    font-weight: 500;
+    color: var(--ds-text);
+    line-height: 1.4;
+}
+/* Switch — elemento próprio, isolado do texto (nunca mais se sobrepõe) */
+.toggle-switch {
+    position: relative;
+    flex-shrink: 0;
+    width: 44px;
+    height: 26px;
+    background: var(--ds-warm-400);
+    border-radius: 999px;
+    transition: background .22s;
+}
+.toggle-switch::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    background: #FFFFFF;
+    border-radius: 50%;
+    box-shadow: 0 1px 4px rgba(0,0,0,.22);
+    transition: left .22s;
+}
+/* Estado MARCADO */
+.toggle-checkbox:checked + .toggle-label .toggle-switch {
+    background: var(--ds-bronze);
+}
+.toggle-checkbox:checked + .toggle-label .toggle-switch::after {
+    left: 21px;
+}
+/* Foco acessível */
+.toggle-checkbox:focus-visible + .toggle-label .toggle-switch {
+    outline: 2px solid var(--ds-bronze);
+    outline-offset: 2px;
+}
+
+
+/* ── Ficha (show.php) ───────────────────────────────────────── */
+.ficha-item {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--ds-warm-200);
+    transition: background .15s;
+}
+.ficha-item:last-child { border-bottom: none; }
+.ficha-item:hover {
+    background: rgba(106,53,80,.04);
+    margin: 0 -8px;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: var(--ds-radius-xs);
+}
+.ficha-chave {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--ds-text);
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    line-height: 1.4;
+    flex-shrink: 0;
+    min-width: 160px;
+}
+.ficha-valor {
+    font-family: 'Montserrat', sans-serif;
+    font-size: var(--ds-text-sm);
+    color: var(--ds-text-soft);
+    font-weight: 500;
+    line-height: 1.5;
+    text-align: right;
+}
+.ficha-valor.vazio {
+    color: var(--ds-text-subtle);
+    font-style: italic;
+    font-weight: 400;
+}
+.badge-sim,
+.badge-nao {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .05em;
+}
+.badge-sim {
+    background: rgba(45,106,79,.10);
+    color: var(--ds-success);
+    border: 1px solid rgba(45,106,79,.20);
+}
+.badge-nao {
+    background: var(--ds-warm-100);
+    color: var(--ds-text-muted);
+    border: 1px solid var(--ds-warm-300);
+}
+.btn-editar {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    margin: 32px auto 0;
+    padding: 14px 24px;
+    background: linear-gradient(135deg, #6A3550 0%, #A56758 100%);
+    color: #FFFFFF;
+    border: none;
+    border-radius: var(--ds-radius-full);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: var(--ds-text-sm);
+    text-transform: uppercase;
+    letter-spacing: .16em;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform .22s, box-shadow .22s, filter .22s;
+    box-shadow: 0 10px 28px rgba(106,53,80,.28);
+    min-height: 50px;
+    line-height: 22px;
+}
+.btn-editar:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.08);
+    box-shadow: 0 16px 36px rgba(106,53,80,.40);
+}
+.ficha-data {
+    text-align: center;
+    font-size: 12px;
+    color: var(--ds-text-subtle);
+    margin-top: 16px;
+}
+
+/* ── Botão salvar ───────────────────────────────────────────── */
+.btn-salvar {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    margin: 32px auto 0;
+    padding: 15px 24px;
+    background: linear-gradient(135deg, #6A3550 0%, #A56758 100%);
+    color: #FFFFFF;
+    border: none;
+    border-radius: var(--ds-radius-full);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: var(--ds-text-sm);
+    text-transform: uppercase;
+    letter-spacing: .16em;
+    cursor: pointer;
+    transition: transform .22s, box-shadow .22s, filter .22s;
+    box-shadow: 0 10px 28px rgba(106,53,80,.28);
+    min-height: 50px;
+}
+.btn-salvar:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.05);
+    box-shadow: 0 16px 36px rgba(106,53,80,.38);
+}
+.btn-salvar:active {
+    transform: translateY(0);
+}
+
+/* ── Responsivo ─────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .fields-grid,
+    .fields-grid.triple { grid-template-columns: 1fr 1fr; }
+    .anamnese-section { padding: 20px 18px; }
+    .section-heading { font-size: var(--ds-text-base); }
+    .page-title { font-size: var(--ds-text-xl); }
+}
+@media (max-width: 480px) {
+    .fields-grid,
+    .fields-grid.triple { grid-template-columns: 1fr; }
+    .page-title { font-size: var(--ds-text-lg) !important; }
+    .page-subtitle { font-size: 13px; }
+}
+
+@media (max-width: 375px) {
+  .an-opcoes-grid { grid-template-columns: 1fr !important; }
+  .an-opcao-label { font-size: 13px; padding: 10px 12px; }
+  .an-step-progress { gap: 6px; }
+  .an-step-dot { width: 28px; height: 28px; font-size: 11px; }
+  .an-step-label { font-size: 10px; }
+  .an-section-title { font-size: 1rem; }
+}
